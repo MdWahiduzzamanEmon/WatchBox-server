@@ -21,7 +21,64 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-console.log("Connected database", uri);
+
+
+async function run() {
+  try {
+    await client.connect();
+    const database = client.db("WatchBox");
+    const watchCollection = database.collection("All_Watch");
+    
+    //get limit products
+    app.get("/products", async (req, res) => {
+      const result = await watchCollection.find({}).limit(6).toArray();
+      res.send(result)
+    })
+    //get all
+    app.get("/allProducts", async (req, res) => {
+      const result = await watchCollection.find({}).toArray();
+      res.send(result)
+    })
+
+
+
+  } finally {
+    // await client.close();
+  }
+}
+run().catch(console.dir);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/", (req, res) => {
   res.send("Hello Watch World!");
 });
