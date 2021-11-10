@@ -6,7 +6,7 @@ const { MongoClient } = require("mongodb");
 
 
 const port = process.env.PORT ||5000;
-
+const ObjectId = require("mongodb").ObjectId;
 
 //middleware 
 app.use(cors())
@@ -28,20 +28,35 @@ async function run() {
     await client.connect();
     const database = client.db("WatchBox");
     const watchCollection = database.collection("All_Watch");
-    
+    const buyingdetailsCollection = database.collection("buyingdetails");
+    const userInfoCollection = database.collection("userInfo");
     //get limit products
     app.get("/products", async (req, res) => {
       const result = await watchCollection.find({}).limit(6).toArray();
-      res.send(result)
-    })
+      res.send(result);
+    });
     //get all
     app.get("/allProducts", async (req, res) => {
       const result = await watchCollection.find({}).toArray();
-      res.send(result)
-    })
+      res.send(result);
+    });
+    //get product by id
+    app.get("/product/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: ObjectId(id) };
+      const result = await watchCollection.findOne(filter);
+      res.send(result);
+    });
 
-
-
+    app.post("/buyingdetails", async (req, res) => {
+      const result = await buyingdetailsCollection.insertOne(req.body);
+      res.json(result);
+    });
+    //userInfo
+    app.post("/userInfo", async (req, res) => {
+      const result = await userInfoCollection.insertOne(req.body);
+      res.json(result);
+    });
   } finally {
     // await client.close();
   }
