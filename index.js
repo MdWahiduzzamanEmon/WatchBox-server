@@ -40,6 +40,16 @@ async function run() {
       const result = await watchCollection.find({}).toArray();
       res.send(result);
     });
+    app.delete("/deleteProducts/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await watchCollection.deleteOne(query);
+      res.json(result);
+    });
+    app.post("/addProduct", async (req, res) => {
+      const result = await watchCollection.insertOne(req.body);
+      res.json(result)
+    });
     //get product by id
     app.get("/product/:id", async (req, res) => {
       const id = req.params.id;
