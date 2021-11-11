@@ -52,6 +52,40 @@ async function run() {
       const result = await buyingdetailsCollection.insertOne(req.body);
       res.json(result);
     });
+    app.get("/buyingdetails/:email", async (req, res) => {
+      const user = req.params.email
+      const query = { email: user }
+      const result = await buyingdetailsCollection.find(query).toArray();
+      res.send(result)
+    });
+    app.get("/buyingAlldetails/", async (req, res) => {
+      const result = await buyingdetailsCollection.find({}).toArray();
+      res.send(result)
+    });
+    app.delete("/buyingdetails/:id", async (req, res) => {
+      const id = req.params.id
+      const query = { _id:ObjectId(id) }
+      const result = await buyingdetailsCollection.deleteOne(query)
+      res.json(result)
+    });
+
+    //update statuses
+    app.put("/buyingdetails/:id", async (req, res) => {
+      const user = req.body;
+      const id=req.params.id
+      const filter = {
+        _id: ObjectId(id)
+      };
+       const updateDoc = {
+         $set: { status: user.status },
+       };
+const result = await buyingdetailsCollection.updateOne(
+  filter,
+  updateDoc,
+      );
+      res.json(result)
+    });
+
     //userInfo
     app.post("/userInfo", async (req, res) => {
       const result = await userInfoCollection.insertOne(req.body);
