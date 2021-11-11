@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
+let cors = require("cors");
+
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 const admin = require("firebase-admin");
@@ -10,7 +11,13 @@ const port = process.env.PORT ||5000;
 const ObjectId = require("mongodb").ObjectId;
 
 //middleware 
-app.use(cors())
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); 
 app.use(express.json())
 
 admin.initializeApp({
@@ -149,7 +156,7 @@ const result = await buyingdetailsCollection.updateOne(
       const query = { email: user }
       const result = await userInfoCollection.findOne(query);
       let isAdmin = false;
-      if (result.role === "admin") {
+      if (result?.role === "admin") {
         isAdmin = true;
       }
       res.send(isAdmin);
