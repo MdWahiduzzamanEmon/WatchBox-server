@@ -55,6 +55,7 @@ async function run() {
     const watchCollection = database.collection("All_Watch");
     const buyingdetailsCollection = database.collection("buyingdetails");
     const userInfoCollection = database.collection("userInfo");
+    const reviewCollection = database.collection("review")
     //get limit products
     app.get("/products", async (req, res) => {
       const result = await watchCollection.find({}).limit(6).toArray();
@@ -103,7 +104,16 @@ async function run() {
       const result = await buyingdetailsCollection.deleteOne(query)
       res.json(result)
     });
-
+    //post review
+    app.post('/review', async (req, res) => {
+      const result = await reviewCollection.insertOne(req.body);
+      res.json(result);
+    })
+    //get review
+    app.get('/review', async (req, res) => {
+      const result = await reviewCollection.find({}).toArray();
+      res.json(result);
+    })
     //update statuses
     app.put("/buyingdetails/:id", async (req, res) => {
       const user = req.body;
@@ -151,7 +161,7 @@ const result = await buyingdetailsCollection.updateOne(
      
     });
 //check admin 
-    app.get("/userData/:email",verifyToken, async (req, res) => {
+    app.get("/userData/:email", async (req, res) => {
       const user = req.params.email;
       const query = { email: user }
       const result = await userInfoCollection.findOne(query);
