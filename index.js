@@ -144,7 +144,7 @@ const result = await buyingdetailsCollection.updateOne(
      
     });
 //check admin 
-    app.get("/userData/:email", async (req, res) => {
+    app.get("/userData/:email",verifyToken, async (req, res) => {
       const user = req.params.email;
       const query = { email: user }
       const result = await userInfoCollection.findOne(query);
