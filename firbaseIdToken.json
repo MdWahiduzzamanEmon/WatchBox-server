@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "watch-box-eb445",
+  "private_key_id": "707359142698b3bc7182ef3dd364ccb3351a6850",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC+R9Zv6ZcyAjTz\ny4vnAa9yyVeeGdBMt27xdOAjkpylyXymuYfUqFwHtXJMrquKP1a91wP+XVkVzMWI\neddwIBKW2xXRZhWhhGLZKSCQK/CWBL2LjggIVJHdyHaUSmt9UyzHxl8Dor36FMmu\nRbp0l+2rfTDF50w3XngORdje5qfvnYN5Vt7OJpSFtiFjyMexDNrqObsynTvYhg1E\nGBHhXXNvCCChJomYmy/aDQGbQd8Dxv4LeBSG891IT20wnncwWwwcdans4cQdvwPP\n100U16IGUqp+lrUa5JBTW3WKPJgB7z5S95pUeXGc/gpsniqQ9WjF+sFaVvUFh0hI\nN8BK0DshAgMBAAECggEABa2/a7TbFSwdcDKwjM7/MVPqtF5VGfsF+bkJGOqu1+BK\n4u9pyzoQkA7VV85FMpGoGS+N8BURW+4R7ZwkRrWAVIX6kVaked7pc81vSjozeoiu\n7veoy/XZKhcp2cxcR5/YN+iWzJUaahidecDdOw5PMqVgc6GO496jAtsJCUL1O1iI\n5N/tcifVpAOD5vNpg222nyUAi/SmO0/6M3Vf691jRNeh9ghzvHA8mAogMAr/B2hE\nML4IKOjCOuVwgaE6giAeTtNKKTAUyv9vbG7l27f5W0wwTbWoZqk0GPl7SwhZEN+e\n39KeG71lvSkJZoLHI/fZp7H0btX4QTmASsa/gr6IaQKBgQD+3RIUYCeX5Q7fTOsX\nLwD0jTgr4EQb6vHueYGq02c6Ud/6A1ManMhu5/pn+Evul6KL6ZVcc01j5HjTk6FF\ngiODp6C18/N9ZCSdj6j7tcgOJXcunymUhDTY/Q3pUeyY7Weylz5PeqcCyenpCyzp\n08DTVuB+1eiXeVAcm+UbWJSS6QKBgQC/IQuAc2yEdbOniB/fz+Dt7J9vOhu2v5fh\nrNmH7NK3+rraRVtwkZQnBKmlxUtuoI6VPepjh/A2D4pvp5fJfyVuH2HSnYXphcpy\nDD3ruMYKp/bgEHLjY720I8lIjJXxZ/qMHfTB1IEB1irha13UN6K+CTVempBaBWJP\n8RlcF4OTeQKBgCmCdBlhd9Fje0KfUoLaIvuxrH5o7m7lmzXOEHJ0MBHtl98uf3CM\nLJDzs3MPm75mcBD9oFgIZ4hng85h8xhRE9uzh5da/kNj9hq7dThZ6RV0wK6VOb54\nserNfGCN+U0HDaamv31OarknjbNpII2M8ZD6S2IdEN7q4UNnmK8VhE1RAoGAUABc\n+B9YRPmfgXiRHvW8iNqKwdvozc3UnTnks+iFK01f+Q0fATdudAaXnDPBJ0U9aWrJ\nOXAlM/u9To8wEb+Ow1GPeMFG1ECURLirEof9HWjBBXjdHiEZvtVb42o1OR702MGR\nObDhbwteV4zBcZr4G+Nu23KHCadHR377xnhxMsECgYA4V3z23+PLHoCw0ruW9d8o\nvQLsS4AXWX6aPXp3uktGjjJNjdsUrGvSMBWeDWrB9mL8pzr6CfqdGh3pfSY6+u5r\nalglSnG5mR8opj3syLoKYkhnBfvEGOYePofStndWjZG8+7OGKzdz1QVFZ89Mgn1t\npIginWYeG8yUZ3Iy7CRdxA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-b9j0e@watch-box-eb445.iam.gserviceaccount.com",
+  "client_id": "104130177593386437034",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-b9j0e%40watch-box-eb445.iam.gserviceaccount.com"
+}

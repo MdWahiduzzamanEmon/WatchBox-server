@@ -3,7 +3,8 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-
+const admin = require("firebase-admin");
+const serviceAccount = JSON.parse(process.env.FIREBASE_ID_TOKEN);
 
 const port = process.env.PORT ||5000;
 const ObjectId = require("mongodb").ObjectId;
@@ -12,6 +13,9 @@ const ObjectId = require("mongodb").ObjectId;
 app.use(cors())
 app.use(express.json())
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 // database connect 
 
@@ -21,6 +25,20 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+const verifyToken = async (req, res, next) => {
+  if (req.headers.authorization) {
+    const idToken = req.headers.authorization.split(" ")[1];
+    try {
+      const decodedUser = await admin.auth().verifyIdToken(idToken);
+      req.decodedEmail = decodedUser.email
+      
+    }
+    catch { }
+  }
+  next();
+}
+
 
 
 async function run() {
@@ -101,6 +119,42 @@ const result = await buyingdetailsCollection.updateOne(
       const result = await userInfoCollection.insertOne(req.body);
       res.json(result);
     });
+
+
+///make admin 
+    
+    app.put("/adminEmail",verifyToken, async (req, res) => {
+      const user = req.body;
+      const requesterEmail = req.decodedEmail;
+      if (requesterEmail) {
+        const requester = await userInfoCollection.findOne({
+          email: requesterEmail,
+        });
+        if (requester.role === "admin") {
+          const filter = { email: user.email };
+          const updateDoc = {
+            $set: { role: "admin" },
+          };
+          const result = await userInfoCollection.updateOne(filter, updateDoc);
+          res.json(result);
+        }
+      } else {
+        res.status(403).json({message: "You do not have permission to make an admin"})
+      }
+     
+    });
+//check admin 
+    app.get("/userData/:email",verifyToken, async (req, res) => {
+      const user = req.params.email;
+      const query = { email: user }
+      const result = await userInfoCollection.findOne(query);
+      let isAdmin = false;
+      if (result.role === "admin") {
+        isAdmin = true;
+      }
+      res.send(isAdmin);
+    })
+
   } finally {
     // await client.close();
   }
