@@ -51,6 +51,7 @@ const verifyToken = async (req, res, next) => {
 async function run() {
   try {
     await client.connect();
+    //collection
     const database = client.db("WatchBox");
     const watchCollection = database.collection("All_Watch");
     const buyingdetailsCollection = database.collection("buyingdetails");
@@ -66,6 +67,7 @@ async function run() {
       const result = await watchCollection.find({}).toArray();
       res.send(result);
     });
+    // delete   
     app.delete("/deleteProducts/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
